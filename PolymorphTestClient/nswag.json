@@ -1,0 +1,19 @@
+{
+  "runtime": "Net100",
+  "documentGenerator": {
+    "fromDocument": {
+      "url": "../OpenApiSpecs/PolymorphRestApi.ShapeApi.json"
+    }
+  },
+  "codeGenerators": {
+    "openApiToCSharpClient": {
+      "generateClientClasses": false,
+      "generateClientInterfaces": false,
+      "generateDtoTypes": true,
+      "namespace": "PolymorpTestClient.Models",
+      "classStyle": "Poco",
+      "jsonLibrary": "SystemTextJson",
+      "output": "Models/Shapes.cs"
+    }
+  }
+}

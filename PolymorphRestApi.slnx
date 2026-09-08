@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="PolymorphRestApi.AppHost/PolymorphRestApi.AppHost.csproj" />
+  <Project Path="PolymorphRestApi.ShapeApi/PolymorphRestApi.ShapeApi.csproj" />
+  <Project Path="PolymorphTestClient/PolymorphTestClient.csproj" />
+  <Project Path="Tests/PolymorphRestApi.ShapeApi.Tests/PolymorphRestApi.ShapeApi.Tests.csproj" />
+</Solution>
