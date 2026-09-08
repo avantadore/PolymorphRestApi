@@ -56,6 +56,9 @@
         }
       },
       "ShapeBase": {
+        "required": [
+          "name"
+        ],
         "type": "object",
         "anyOf": [
           {
@@ -65,9 +68,25 @@
             "$ref": "#/components/schemas/ShapeBaseRectangle"
           },
           {
+            "$ref": "#/components/schemas/ShapeBaseTriangle"
+          },
+          {
             "$ref": "#/components/schemas/ShapeBaseBase"
           }
-        ]
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        },
+        "discriminator": {
+          "propertyName": "$type",
+          "mapping": {
+            "Circle": "#/components/schemas/ShapeBaseCircle",
+            "Rectangle": "#/components/schemas/ShapeBaseRectangle",
+            "Triangle": "#/components/schemas/ShapeBaseTriangle"
+          }
+        }
       },
       "ShapeBaseBase": {
         "required": [
@@ -80,73 +99,111 @@
         }
       },
       "ShapeBaseCircle": {
-        "required": [
-          "$type",
-          "center",
-          "radius",
-          "name"
-        ],
-        "properties": {
-          "$type": {
-            "enum": [
-              "Circle"
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ShapeBase"
+          },
+          {
+            "required": [
+              "$type",
+              "center",
+              "radius"
             ],
-            "type": "string"
-          },
-          "center": {
-            "$ref": "#/components/schemas/Point"
-          },
-          "radius": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
-            "format": "int32"
-          },
-          "name": {
-            "type": "string"
+            "properties": {
+              "$type": {
+                "enum": [
+                  "Circle"
+                ],
+                "type": "string"
+              },
+              "center": {
+                "$ref": "#/components/schemas/Point"
+              },
+              "radius": {
+                "pattern": "^-?(?:0|[1-9]\\d*)$",
+                "type": [
+                  "integer",
+                  "string"
+                ],
+                "format": "int32"
+              }
+            }
           }
-        }
+        ]
       },
       "ShapeBaseRectangle": {
-        "required": [
-          "$type",
-          "topLeft",
-          "width",
-          "height",
-          "name"
-        ],
-        "properties": {
-          "$type": {
-            "enum": [
-              "Rectangle"
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ShapeBase"
+          },
+          {
+            "required": [
+              "$type",
+              "topLeft",
+              "width",
+              "height"
             ],
-            "type": "string"
-          },
-          "topLeft": {
-            "$ref": "#/components/schemas/Point"
-          },
-          "width": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
-            "format": "int32"
-          },
-          "height": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
-            "format": "int32"
-          },
-          "name": {
-            "type": "string"
+            "properties": {
+              "$type": {
+                "enum": [
+                  "Rectangle"
+                ],
+                "type": "string"
+              },
+              "topLeft": {
+                "$ref": "#/components/schemas/Point"
+              },
+              "width": {
+                "pattern": "^-?(?:0|[1-9]\\d*)$",
+                "type": [
+                  "integer",
+                  "string"
+                ],
+                "format": "int32"
+              },
+              "height": {
+                "pattern": "^-?(?:0|[1-9]\\d*)$",
+                "type": [
+                  "integer",
+                  "string"
+                ],
+                "format": "int32"
+              }
+            }
           }
-        }
+        ]
+      },
+      "ShapeBaseTriangle": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ShapeBase"
+          },
+          {
+            "required": [
+              "$type",
+              "vertex1",
+              "vertex2",
+              "vertex3"
+            ],
+            "properties": {
+              "$type": {
+                "enum": [
+                  "Triangle"
+                ],
+                "type": "string"
+              },
+              "vertex1": {
+                "$ref": "#/components/schemas/Point"
+              },
+              "vertex2": {
+                "$ref": "#/components/schemas/Point"
+              },
+              "vertex3": {
+                "$ref": "#/components/schemas/Point"
+              }
+            }
+          }
+        ]
       }
     }
   },

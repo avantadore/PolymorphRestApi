@@ -5,7 +5,7 @@ namespace PolymorphRestApi.ShapeApi.Models
 {
     [JsonDerivedType(typeof(Circle), typeDiscriminator: "Circle")]
     [JsonDerivedType(typeof(Rectangle), typeDiscriminator: "Rectangle")]
-    //[JsonDerivedType(typeof(Triangle), typeDiscriminator: "Triangle")]
+    [JsonDerivedType(typeof(Triangle), typeDiscriminator: "Triangle")]
     [JsonPolymorphic(
         UnknownDerivedTypeHandling = JsonUnknownDerivedTypeHandling.FallBackToBaseType,
         IgnoreUnrecognizedTypeDiscriminators = true)]
@@ -28,12 +28,12 @@ namespace PolymorphRestApi.ShapeApi.Models
         public required int Height { get; set; }
     }
 
-    // public class Triangle() : ShapeBase
-    // {
-    //     public required Point Vertex1 { get; set; }
-    //     public required Point Vertex2 { get; set; }
-    //     public required Point Vertex3 { get; set; }
-    // }
+    public class Triangle() : ShapeBase
+    {
+        public required Point Vertex1 { get; set; }
+        public required Point Vertex2 { get; set; }
+        public required Point Vertex3 { get; set; }
+    }
 
 
     public class Point()

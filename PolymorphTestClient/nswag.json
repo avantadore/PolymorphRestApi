@@ -2,7 +2,7 @@
   "runtime": "Net100",
   "documentGenerator": {
     "fromDocument": {
-      "url": "../OpenApiSpecs/PolymorphRestApi.ShapeApi.json"
+      "url": "../OpenApiSpecs/OpenApiSpec-WithoutTriangle.json"
     }
   },
   "codeGenerators": {
